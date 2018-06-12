@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Name {
 
@@ -26,8 +27,7 @@ public class Name {
     public void maxName() {
         int max = imie[0].length();
         int min=imie[0].length();
-        int repeat=0;
-        String repeatImie=new String();
+
         for (int i = 0; i < imie.length; i++) {
             if (imie[i].length() >= max) {
                 max=imie[i].length();
@@ -38,26 +38,24 @@ public class Name {
                 min=imie[i].length();
                 imieMin = imie[i];
             }
+            
 
-            repeat=0;
-            for(int j=0; j<imie.length; j++){
+        }
+        
+    }
+public void repatImie() {
 
-                if(imie[i].equals(imie[j])){
-                   repeat+=1;
-                   repeatImie=imie[i];
-                }
-                if (repeat>1) {
-                    mapa.put(repeatImie, repeat);
-                }
+    for (int i = 0; i < imie.length; i++) {
+        int repeat = 1;
+        for (int j = 0; j < imie.length; j++) {
+
+            if (imie[i].equals(imie[j]) && i!=j) {
+                repeat += 1;
+                mapa.put(imie[i], repeat);
             }
-
 
         }
 
-
     }
-
-
-
-
+}
     }

@@ -1,4 +1,4 @@
-import java.io.IOException;
+﻿import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -21,10 +21,11 @@ public class Main {
            System.out.println(args1);
        }
         name.maxName();
+       name.repatImie();
         System.out.println("Najdłuższe imie: "  + name.imieMax);
         System.out.println("Najkrótsze imie: " + name.imieMin);
 
-        System.out.println("Pwtarzające się imiona: " + name.mapa.keySet() + name.mapa.values() );
+        System.out.println("Pwtarzające się imiona: " + name.mapa );
     }
 
 
