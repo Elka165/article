@@ -1,3 +1,4 @@
+﻿import java.io.*;
 import java.util.*;
 
 public class Losowanie {
@@ -5,36 +6,40 @@ public class Losowanie {
 
         Scanner scaner=new Scanner(System.in);
 
-        SortedSet<Integer>wynik=new TreeSet<Integer>();
+        SortedSet<Integer>score=new TreeSet<Integer>();
         System.out.println("Podaj zakres liczb: ");
-        int maxZakres = scaner.nextInt();
+        int maxRange = scaner.nextInt();
 
         System.out.println("Podaj ilość liczb do wylosowania:");
-        int iloscLiczb =scaner.nextInt();
+        int amountNamber =scaner.nextInt();
 
-        int[] tablica=new int[iloscLiczb];
+        int[] tablica=new int[amountNamber];
 
-        metodaLosowania(maxZakres, iloscLiczb, wynik);
-        wypiszWynik(wynik);
+        metodaLosowania(maxRange, amountNamber, score);
+        writeScore(score);
+
+
+        writeFile(score);
+        System.out.println("Dane zostały zapisane w pliku");
 
     }
 
 
 
 
-    public static void metodaLosowania(int maxZakres, int iloscLiczb,  SortedSet<Integer> wynik){
+    public static void metodaLosowania(int maxRange, int amountNamber,  SortedSet<Integer> score){
 
             do {
-                double losowanie = (Math.random() * maxZakres) + 1;
-                wynik.add((int) losowanie);
-            }while(wynik.size()<iloscLiczb);
+                double rand = (Math.random() * maxRange) + 1;
+                score.add((int) rand);
+            }while(score.size()<amountNamber);
 
     }
-public static void wypiszWynik(SortedSet<Integer> wynik){
-        for(Integer liczby:wynik){
+public static void writeScore(SortedSet<Integer> score){
+        for(Integer number:score){
             try {
                 Thread.sleep(600);
-                System.out.println(liczby);
+                System.out.println(number);
             } catch (InterruptedException ie) {
             }
 
@@ -43,5 +48,26 @@ public static void wypiszWynik(SortedSet<Integer> wynik){
 
 }
 
+public static void writeFile(SortedSet<Integer> score){
+   try {
+       File statText = new File("filename.txt");
+       FileOutputStream is = new FileOutputStream(statText);
+       OutputStreamWriter osw = new OutputStreamWriter(is);
+       Writer w = new BufferedWriter(osw);
+
+       for( Integer write: score) {
+            w.write(String.valueOf(write));
+           ((BufferedWriter) w).newLine();
+       }
+       w.close();
+
+   }catch (IOException ex){
+       ex.printStackTrace();
+   }
+   }
+
+
+
 }
+
 
